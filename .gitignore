@@ -1,0 +1,22 @@
+# Local secrets and environment overrides
+.env
+.env.*
+!.env.example
+.secrets/
+
+# Local project control and agent instructions
+/AGENTS.md
+/docs/
+
+# Local dependencies and caches
+vendor/
+node_modules/
+.phpunit.cache/
+.phpunit.result.cache
+.php-cs-fixer.cache
+
+# Editor and operating-system files
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
