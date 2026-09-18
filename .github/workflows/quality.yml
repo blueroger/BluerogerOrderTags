@@ -1,0 +1,73 @@
+name: Quality
+
+on:
+    pull_request:
+    push:
+
+permissions:
+    contents: read
+
+jobs:
+    php-quality:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                php: ['8.2', '8.4']
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+
+            - name: Set up PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: ${{ matrix.php }}
+                  coverage: none
+                  tools: composer:v2
+
+            - name: Install locked development dependencies
+              run: composer install --no-interaction --prefer-dist
+
+            - name: Run local QA
+              run: composer qa
+
+            - name: Audit locked dependencies
+              run: composer audit --locked
+
+    extension:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check out repository
+              uses: actions/checkout@v4
+
+            - name: Install Shopware CLI
+              uses: shopware/shopware-cli-action@v3
+              with:
+                  version: '0.18.4'
+
+            - name: Validate lowest supported Shopware version
+              run: shopware-cli --no-interaction extension validate . --check-against lowest
+
+            - name: Validate highest supported Shopware version
+              run: shopware-cli --no-interaction extension validate . --check-against highest
+
+            - name: Stage release files
+              run: |
+                  mkdir -p build/release-source/BluerogerOrderTags
+                  cp composer.json LICENSE README.md build/release-source/BluerogerOrderTags/
+                  cp -R src build/release-source/BluerogerOrderTags/
+
+            - name: Build release package
+              working-directory: build/release-source
+              run: >-
+                  shopware-cli --no-interaction extension package
+                  BluerogerOrderTags
+                  --disable-git
+                  --filename BluerogerOrderTags-1.0.0.zip
+                  --output-directory ..
+
+            - name: Upload release package
+              uses: actions/upload-artifact@v4
+              with:
+                  name: BluerogerOrderTags-1.0.0
+                  path: build/BluerogerOrderTags-1.0.0.zip
+                  if-no-files-found: error

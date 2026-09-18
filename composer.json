@@ -1,0 +1,69 @@
+{
+    "name": "blueroger/blueroger-order-tags",
+    "description": "Adds order tags to the Shopware administration order list.",
+    "type": "shopware-platform-plugin",
+    "version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Blueroger"
+        }
+    ],
+    "homepage": "https://github.com/blueroger/BluerogerOrderTags",
+    "support": {
+        "issues": "https://github.com/blueroger/BluerogerOrderTags/issues",
+        "source": "https://github.com/blueroger/BluerogerOrderTags"
+    },
+    "require": {
+        "php": ">=8.2",
+        "shopware/core": ">=6.7.3 <6.9.0"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/phpstan": "^2.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "BluerogerOrderTags\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "BluerogerOrderTags\\BluerogerOrderTags",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "label": {
+            "de-DE": "Blueroger Bestell-Tags",
+            "en-GB": "Blueroger Order Tags"
+        },
+        "description": {
+            "de-DE": "Ergänzt die Bestellübersicht in der Shopware Administration um zugeordnete Tags und nutzt den nativen Tag-Filter für eine schnelle, vertraute Auswahl.",
+            "en-GB": "Adds assigned tags directly to the Shopware administration order overview and keeps the native tag filter for a fast, familiar way to find relevant orders."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://github.com/blueroger",
+            "en-GB": "https://github.com/blueroger"
+        },
+        "supportLink": {
+            "de-DE": "https://github.com/blueroger/BluerogerOrderTags/issues",
+            "en-GB": "https://github.com/blueroger/BluerogerOrderTags/issues"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false,
+            "symfony/runtime": false
+        },
+        "platform": {
+            "php": "8.2.0"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "analyse": "phpstan analyse --configuration=phpstan.neon.dist --no-progress",
+        "cs:check": "php-cs-fixer fix --dry-run --diff --config=.php-cs-fixer.dist.php",
+        "qa": [
+            "@composer validate --strict --no-check-version",
+            "@analyse",
+            "@cs:check"
+        ]
+    }
+}

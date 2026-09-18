@@ -1,26 +1,45 @@
 # BluerogerOrderTags
 
-Stand: 18.09.2026
+BluerogerOrderTags is an open-source extension for the Shopware administration.
+Its first release will show the tags assigned to an order directly in the
+native order overview while keeping Shopware's built-in tag filter.
 
 ## Status
 
-Initialisierter Repository-Stand für das geplante Shopware-Plugin `BluerogerOrderTags`.
+The installable plugin foundation is in place. The order-list feature itself is
+not part of this repository state yet.
 
-Nach SWOT-000 enthält der versionierte Stand zunächst nur diese README und die Git-Schutzregeln. Plugin-Gerüst, Tooling und Feature-Code entstehen erst in ausdrücklich freigegebenen Folgepaketen.
+## Compatibility
 
-## Versionierte Ausgangsstruktur
+- Shopware `>=6.7.3 <6.9.0`
+- PHP `>=8.2`
 
-```text
-BluerogerOrderTags/
-├── .gitignore
-└── README.md
+The declared range is the intended compatibility target. Shopware 6.7.9.1 is
+the currently verified development environment; complete cross-version release
+verification remains pending.
+
+## Installation
+
+Place the plugin in `custom/plugins/BluerogerOrderTags`, then run:
+
+```bash
+bin/console plugin:refresh
+bin/console plugin:install --activate BluerogerOrderTags
+bin/build-administration.sh
 ```
 
-Lokale Arbeitsanweisungen, Umgebungsnachweise, Testplanung und Projektsteuerung werden bewusst nicht in Git oder Release-Artefakte aufgenommen. Plugin-Dateien, Tooling und CI werden erst durch das freigegebene Arbeitspaket SWOT-001 erzeugt. Die Tags-Spalte ist Gegenstand von SWOT-002.
+## Development
 
-## Nächste kontrollierte Schritte
+Install the project-local quality tools and run all checks:
 
-1. SWOT-000 wurde vollständig geprüft und am 18.09.2026 durch Mihai abgenommen.
-2. SWOT-001 nur vorschlagen und erst nach neuer ausdrücklicher Umsetzungsfreigabe beginnen.
+```bash
+composer install
+composer qa
+```
 
-Die verbindliche Projektsteuerung und die freigegebenen Arbeitspakete werden außerhalb dieses Repositorys geführt.
+The local `vendor/` directory contains development tooling only. It is ignored
+by Git and excluded from release packages.
+
+## License
+
+Licensed under the [MIT License](LICENSE).
