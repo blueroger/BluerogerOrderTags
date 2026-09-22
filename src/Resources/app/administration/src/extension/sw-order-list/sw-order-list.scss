@@ -1,0 +1,24 @@
+.blueroger-order-tags__labels {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--scale-size-4);
+    max-width: 100%;
+    min-width: 0;
+}
+
+.blueroger-order-tags__labels .blueroger-order-tags__label {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    min-height: var(--scale-size-16);
+    margin: 0;
+
+    .sw-label__caption {
+        overflow: visible;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-overflow: clip;
+    }
+}

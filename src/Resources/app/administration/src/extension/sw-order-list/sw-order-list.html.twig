@@ -1,0 +1,23 @@
+{% block sw_order_list_grid_columns %}
+    {% parent %}
+
+    {% block blueroger_order_tags_order_list_grid_column_tags %}
+    <template #column-tags="{ item }">
+        <div
+            v-if="item.tags?.length"
+            class="blueroger-order-tags__labels"
+        >
+            <sw-label
+                v-for="tag in item.tags"
+                :key="tag.id"
+                class="blueroger-order-tags__label"
+                appearance="pill"
+                size="small"
+            >
+                {{ tag.name || '—' }}
+            </sw-label>
+        </div>
+        <span v-else>—</span>
+    </template>
+    {% endblock %}
+{% endblock %}
