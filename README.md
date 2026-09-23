@@ -1,13 +1,15 @@
 # BluerogerOrderTags
 
 BluerogerOrderTags is an open-source extension for the Shopware administration.
-Its first release will show the tags assigned to an order directly in the
-native order overview while keeping Shopware's built-in tag filter.
+It shows the tags assigned to an order directly in the native order overview
+and keeps Shopware's built-in tag filter.
 
 ## Status
 
-The installable plugin foundation is in place. The order-list feature itself is
-not part of this repository state yet.
+The order list has a resizable, non-sortable Tags column. Orders without tags
+show a dash; orders with one or more tags show each tag as a label. Tag labels
+wrap within the column when space is limited. Use Shopware's native tag filter
+to narrow the list by tags; this plugin does not add a separate filter.
 
 ## Compatibility
 
